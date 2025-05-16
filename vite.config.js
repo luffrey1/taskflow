@@ -1,19 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/taskflow/', // Cambiado para luffrey1.github.io/taskflow
+  base: '/taskflow/',
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    emptyOutDir: true,
+    sourcemap: false,
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
       output: {
-        manualChunks: undefined,
-        entryFileNames: 'assets/index.js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        manualChunks: undefined
       }
     }
   },
