@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+# Añadir permisos para que GitHub Actions pueda hacer push
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build and Deploy
